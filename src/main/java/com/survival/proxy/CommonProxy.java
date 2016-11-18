@@ -2,9 +2,9 @@ package com.survival.proxy;
 
 import com.survival.EventHandler;
 import com.survival.capabilities.CapabilityHandler;
-import com.survival.capabilities.IThirst;
-import com.survival.capabilities.Thirst;
-import com.survival.capabilities.ThirstStorage;
+import com.survival.capabilities.Thirst.IThirst;
+import com.survival.capabilities.Thirst.Thirst;
+import com.survival.capabilities.Thirst.ThirstStorage;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;

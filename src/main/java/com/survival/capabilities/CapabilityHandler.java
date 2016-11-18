@@ -1,6 +1,7 @@
 package com.survival.capabilities;
 
 import com.survival.Survival;
+import com.survival.capabilities.Thirst.ThirstProvider;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;

@@ -1,4 +1,4 @@
-package com.survival.capabilities;
+package com.survival.capabilities.Thirst;
 
 public class Thirst implements IThirst {
 	

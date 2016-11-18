@@ -1,4 +1,4 @@
-package com.survival.capabilities;
+package com.survival.capabilities.Thirst;
 
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagFloat;
