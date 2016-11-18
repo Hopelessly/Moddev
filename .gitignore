@@ -54,3 +54,7 @@ Temporary Items
 .apdisk
 *.class
 *.jar
+build.gradle
+gradlew
+Moddev_Client.launch
+*.txt
