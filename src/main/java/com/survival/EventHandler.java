@@ -34,7 +34,7 @@ public class EventHandler
 
 		if (player.worldObj.isRemote)
 			return;
-		if (player.isPlayerFullyAsleep() == true) {
+		if (player.isPlayerFullyAsleep() == true) { //TODO: doesnt work
 
 			sleep.set(Survival.SLEEP_CAP);
 
