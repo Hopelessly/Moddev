@@ -3,22 +3,37 @@ package com.survival;
 import com.survival.proxy.CommonProxy;
 
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = Survival.MODID, version = Survival.VERSION)
+@Mod(modid = Survival.modId, name = Survival.name, version = Survival.version)
 public class Survival {
-
-	public static final String MODID = "capabilities-test";
-	public static final String VERSION = "0.1";
-
-	@SidedProxy(clientSide = "com.survival.proxy.CommonProxy", serverSide = "com.survival.proxy.CommonProxy")
+	
+	@SidedProxy(serverSide = "com.survival.proxy.CommonProxy", clientSide = "com.survival.proxy.ClientProxy")
 	public static CommonProxy proxy;
+	
+	public static final String modId = "tutorial";
+	public static final String name = "Tutorial Mod";
+	public static final String version = "1.0.0";
 
-	@EventHandler
+	@Mod.Instance(modId)
+	public static Survival instance;
+	
+	@Mod.EventHandler
+	public void preInit(FMLPreInitializationEvent event) {
+		System.out.println(name + " is loading!");
+	}
+	
+	@Mod.EventHandler
 	public void init(FMLInitializationEvent event) {
-		proxy.init();
+		
+	}
+	
+	@Mod.EventHandler
+	public void postInit(FMLPostInitializationEvent event) {
+
 	}
 
 }
