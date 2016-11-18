@@ -7,35 +7,36 @@ import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 
-public class ThirstProvider implements ICapabilitySerializable<NBTBase> {
+public class ThirstProvider implements ICapabilitySerializable<NBTBase> 
+{
 
 	@CapabilityInject(IThirst.class)
-    public static final Capability<IThirst> Thirst_CAP = null;
+    public static final Capability<IThirst> THIRST_CAP = null;
 
-    private IThirst instance = Thirst_CAP.getDefaultInstance();
+    private IThirst instance = THIRST_CAP.getDefaultInstance();
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing)
     {
-        return capability == Thirst_CAP;
+        return capability == THIRST_CAP;
     }
 
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing)
     {
-        return capability == Thirst_CAP ? Thirst_CAP.<T> cast(this.instance) : null;
+        return capability == THIRST_CAP ? THIRST_CAP.<T> cast(this.instance) : null;
     }
 
     @Override
     public NBTBase serializeNBT()
     {
-        return Thirst_CAP.getStorage().writeNBT(Thirst_CAP, this.instance, null);
+        return THIRST_CAP.getStorage().writeNBT(THIRST_CAP, this.instance, null);
     }
 
     @Override
     public void deserializeNBT(NBTBase nbt)
     {
-        Thirst_CAP.getStorage().readNBT(Thirst_CAP, this.instance, null, nbt);
+        THIRST_CAP.getStorage().readNBT(THIRST_CAP, this.instance, null, nbt);
     }
 
 }

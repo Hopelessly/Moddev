@@ -1,11 +1,13 @@
 package com.survival.capabilities.Thirst;
 
-public class Thirst implements IThirst {
+public class Thirst implements IThirst 
+{
 	
 	private float thirst = 250.0F;
 
 	@Override
-	public void consume(float points) {
+	public void consume(float points) 
+	{
 		this.thirst -= points;
 		
 		if (this.thirst < 0.0F) this.thirst = 0.0F;
@@ -13,19 +15,22 @@ public class Thirst implements IThirst {
 	}
 
 	@Override
-	public void fill(float points) {
+	public void fill(float points) 
+	{
 		this.thirst += points;
 		
 	}
 
 	@Override
-	public void set(float points) {
+	public void set(float points) 
+	{
 		this.thirst = points;
 		
 	}
 
 	@Override
-	public float getThirst() {
+	public float getThirst() 
+	{
 		return this.thirst;
 	}
 

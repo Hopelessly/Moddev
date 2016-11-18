@@ -1,5 +1,7 @@
 package com.survival;
 
+import com.survival.capabilities.Sleep.ISleep;
+import com.survival.capabilities.Sleep.SleepProvider;
 import com.survival.capabilities.Thirst.IThirst;
 import com.survival.capabilities.Thirst.ThirstProvider;
 
@@ -9,30 +11,35 @@ import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 
-public class EventHandler {
+public class EventHandler 
+{
+	
 	@SubscribeEvent
-	public void onPlayerLogsIn(PlayerLoggedInEvent event) {
+	public void onPlayerLogsIn(PlayerLoggedInEvent event) 
+	{
 		EntityPlayer player = event.player;
-		IThirst thirst = player.getCapability(ThirstProvider.Thirst_CAP, null);
+		ISleep sleep = player.getCapability(SleepProvider.SLEEP_CAP, null);
+		IThirst thirst = player.getCapability(ThirstProvider.THIRST_CAP, null);
 
-		String message = String.format("Hello there, you have " + (int) thirst.getThirst()) + " thirst left.";
+		String message = String.format("Hello there, you have " + (int) thirst.getThirst()) + " thirst left, " + (int) sleep.getSleep() + " sleep left.";
 		player.addChatMessage(new TextComponentString(message));
 	}
 
 	@SubscribeEvent
-	public void onPlayerSleep(PlayerSleepInBedEvent event) {
+	public void onPlayerSleep(PlayerSleepInBedEvent event) 
+	{
 		EntityPlayer player = event.getEntityPlayer();
+		IThirst thirst = player.getCapability(ThirstProvider.THIRST_CAP, null);
+		ISleep sleep = player.getCapability(SleepProvider.SLEEP_CAP, null);
 
 		if (player.worldObj.isRemote)
 			return;
-		if (player.isPlayerFullyAsleep()) {
-			IThirst thirst = player.getCapability(ThirstProvider.Thirst_CAP, null);
+		if (player.isPlayerFullyAsleep() == true) {
 
-			thirst.fill(50);
+			sleep.set(Survival.SLEEP_CAP);
 
 			String message = String.format(
-					"You refreshed yourself in the bed. You received 50 Thirst, you have " + (int) thirst.getThirst())
-					+ " thirst left.";
+					"You are now fully rested");
 			player.addChatMessage(new TextComponentString(message));
 		}
 	}
