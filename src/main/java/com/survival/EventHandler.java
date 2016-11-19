@@ -25,19 +25,31 @@ public class EventHandler
 		String message = String.format("Hello there, you have " + (int) thirst.getThirst()) + " thirst left, " + (int) sleep.getSleep() + " sleep left.";
 		player.addChatMessage(new TextComponentString(message));
 	}
-
+	
+	/*@SubscribeEvent
+	public void onUpadte(EntityPlayer player){
+		EntityPlayer player = player.getEntityPlayer();
+		if 
+	}*/
+	
 	@SubscribeEvent
 	public void onWakeUp(PlayerWakeUpEvent event) 
 	{
 		EntityPlayer player = event.getEntityPlayer();
 		IThirst thirst = player.getCapability(ThirstProvider.THIRST_CAP, null);
 		ISleep sleep = player.getCapability(SleepProvider.SLEEP_CAP, null);
+		//TODO: Add food when implemented.
 
 		if (player.worldObj.isRemote)
 			return;
-		if (player.getBedLocation() != null) { //TODO: doesnt work
+		if (player.getBedLocation() != null) { 
 
 			sleep.set(Survival.SLEEP_MAX);
+			
+			if (thirst.getThirst() < 400F)
+				thirst.consume(400F);
+			else
+				thirst.set(0F);
 
 			String message = String.format(
 					"You are now fully rested");
