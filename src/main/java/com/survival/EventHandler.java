@@ -34,9 +34,9 @@ public class EventHandler
 
 		if (player.worldObj.isRemote)
 			return;
-		if (player.isPlayerFullyAsleep() == true) { //TODO: doesnt work
+		if (event.getResultStatus() != null) { //TODO: doesnt work
 
-			sleep.set(Survival.SLEEP_CAP);
+			sleep.set(Survival.SLEEP_MAX);
 
 			String message = String.format(
 					"You are now fully rested");
