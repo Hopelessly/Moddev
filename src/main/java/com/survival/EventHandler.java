@@ -8,6 +8,7 @@ import com.survival.capabilities.Thirst.ThirstProvider;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
+import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 
@@ -26,7 +27,7 @@ public class EventHandler
 	}
 
 	@SubscribeEvent
-	public void onPlayerSleep(PlayerSleepInBedEvent event) 
+	public void onWakeUp(PlayerWakeUpEvent event) 
 	{
 		EntityPlayer player = event.getEntityPlayer();
 		IThirst thirst = player.getCapability(ThirstProvider.THIRST_CAP, null);
@@ -34,7 +35,7 @@ public class EventHandler
 
 		if (player.worldObj.isRemote)
 			return;
-		if (event.getResultStatus() != null) { //TODO: doesnt work
+		if (player.getBedLocation() != null) { //TODO: doesnt work
 
 			sleep.set(Survival.SLEEP_MAX);
 
