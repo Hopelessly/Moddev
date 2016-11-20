@@ -63,8 +63,8 @@ public class EventHandler {
 				++this.day;
 				String message = String.format("A day passes without sleep, you suffer as a result.");
 				player.addChatMessage(new TextComponentString(message));
-				if (day >= 3)
-					day = 3;
+				if (this.day >= 3)
+					this.day = 3;
 				this.sleepTimer = 0;
 			}		
 		} else if (enumdifficulty == EnumDifficulty.HARD) {
@@ -100,9 +100,9 @@ public class EventHandler {
 		} else if (thirst.getThirst() > 0F) {
 			++this.thirstTimer;
 			if (this.thirstTimer >= 100) {
-				if (thirst.getThirst() >= 10F) 
-					thirst.consume(10F);
-				else if (thirst.getThirst() < 10F)
+				if (thirst.getThirst() >= 7F) 
+					thirst.consume(7F);
+				else if (thirst.getThirst() < 7F)
 					thirst.set(0F);
 
 				this.thirstTimer = 0;
