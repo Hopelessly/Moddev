@@ -18,7 +18,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 @Mod(modid = Survival.MODID, version = Survival.VERSION, name = Survival.NAME)
 public class Survival
 {
-    public static final String MODID = "alpha";
+    public static final String MODID = "survival";
     public static final String NAME = "Survival";
     public static final String VERSION = "1.1";
     public static final float SLEEP_MAX = 1000F;

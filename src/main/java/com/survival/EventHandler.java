@@ -68,6 +68,7 @@ public class EventHandler {
 				this.sleepTimer = 0;
 			}		
 		} else if (enumdifficulty == EnumDifficulty.HARD) {
+			this.day = 0;
 			++this.sleepTimer;
 			if (this.sleepTimer >= 100) {
 				if(sleep.getSleep() >= 5.5F)
