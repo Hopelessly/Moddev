@@ -1,0 +1,11 @@
+# Items
+item.ingotCopper.name=Copper Ingot
+item.itemid.name=Item Name
+
+# Blocks
+tile.oreCopper.name=Copper Ore
+tile.blockid.name=Block Name
+
+#mod title
+itemGroup.survival=Survival Mod
+itemGroup.survival=Your Mod Name
