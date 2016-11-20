@@ -1,5 +1,10 @@
 package com.survival;
 
+/**
+ * @author Hopelessly, CmKiller
+ */
+
+import com.survival.block.ModBlocks;
 import com.survival.items.ModItems;
 import com.survival.proxy.CommonProxy;
 
@@ -33,5 +38,6 @@ public class Survival
     public void preInit(FMLPreInitializationEvent event) 
     {
     	ModItems.init();
+    	ModBlocks.init();
     }
 }

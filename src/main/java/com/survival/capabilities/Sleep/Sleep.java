@@ -1,8 +1,10 @@
 package com.survival.capabilities.Sleep;
 
+import com.survival.Survival;
+
 public class Sleep implements ISleep 
 {
-	private float sleep = 250.0F;
+	private float sleep = Survival.SLEEP_MAX;
 
 	@Override
 	public void consume(float points) 
