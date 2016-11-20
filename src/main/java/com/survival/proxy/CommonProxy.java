@@ -9,6 +9,7 @@ import com.survival.capabilities.Thirst.IThirst;
 import com.survival.capabilities.Thirst.Thirst;
 import com.survival.capabilities.Thirst.ThirstStorage;
 
+import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 
@@ -22,4 +23,8 @@ public class CommonProxy {
         MinecraftForge.EVENT_BUS.register(new CapabilityHandler());
         MinecraftForge.EVENT_BUS.register(new EventHandler());
     }
+
+	public void registerItemRenderer(Item item, int meta, String id) 
+	{
+	}
 }

@@ -5,8 +5,15 @@ import com.survival.capabilities.Sleep.SleepProvider;
 import com.survival.capabilities.Thirst.IThirst;
 import com.survival.capabilities.Thirst.ThirstProvider;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
 import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -26,11 +33,34 @@ public class EventHandler
 		player.addChatMessage(new TextComponentString(message));
 	}
 	
-	/*@SubscribeEvent
-	public void onUpadte(EntityPlayer player){
-		EntityPlayer player = player.getEntityPlayer();
-		if 
-	}*/
+	@SubscribeEvent
+	public void onLivingUpdateEvent(LivingUpdateEvent event)
+	{
+		Entity entity = event.getEntity();
+		if (entity.worldObj.isRemote || !(entity instanceof EntityPlayerMP))
+			return;
+		
+		EntityPlayer player = (EntityPlayer) entity;
+	}
+	
+	
+	@SubscribeEvent
+	/*
+	 * Variables: EntityLivingBase entity, DamageSource source, float amount
+	 */
+	public void AttackEvent(LivingAttackEvent event) 
+	{
+		
+	}
+	
+	@SubscribeEvent
+	/*
+	 * Variables: EntityLivingBase entity, DamageSource source, float amount
+	 */
+	public void HurtEvent(LivingHurtEvent event) 
+	{
+		
+	}
 	
 	@SubscribeEvent
 	public void onWakeUp(PlayerWakeUpEvent event) 
