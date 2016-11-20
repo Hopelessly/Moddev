@@ -30,7 +30,7 @@ public class EventHandler {
 		ISleep sleep = player.getCapability(SleepProvider.SLEEP_CAP, null);
 		IThirst thirst = player.getCapability(ThirstProvider.THIRST_CAP, null);
 
-		String message = String.format("Hello there, you have " + (int) thirst.getThirst()) + " thirst left, "
+		String message = String.format("You have " + (int) thirst.getThirst()) + " thirst left, "
 				+ (int) sleep.getSleep() + " sleep left.";
 		player.addChatMessage(new TextComponentString(message));
 	}
@@ -131,8 +131,9 @@ public class EventHandler {
 			return;
 
 		EntityPlayer player = (EntityPlayer) entity;
+		ISleep sleep = player.getCapability(SleepProvider.SLEEP_CAP, null);
 
-		if (this.day >= 1)
+		if (this.day >= 1 || sleep.getSleep() <= 0F)
 		{
 			event.setCanceled(true);
 		}
