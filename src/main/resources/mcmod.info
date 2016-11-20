@@ -1,5 +1,6 @@
 [
 {
+  "modid": "alpha",
   "name": "Survival",
   "description": "Adds survival elements such as thirst and sleep meters.",
   "version": "${version}",
