@@ -83,6 +83,11 @@ public class EventHandler {
 		}
 		if (thirst.getThirst() <= 0F) {
 			++this.thirstTimer;
+			if (this.msgSentThirst == false) {
+				String message = String.format("You are dehydrated. Get something to drink!");
+				player.addChatMessage(new TextComponentString(message));
+				this.msgSentThirst = true;
+			}
 			if (this.thirstTimer >= 80) {
 				if (player.getHealth() > 1.0F) {
 
@@ -97,12 +102,6 @@ public class EventHandler {
 					thirst.consume(10F);
 				else if (thirst.getThirst() < 10F)
 					thirst.set(0F);
-
-				if (this.msgSentThirst == false && thirst.getThirst() <= 0F) {
-					String message = String.format("You are dehydrated. Get something to drink!");
-					player.addChatMessage(new TextComponentString(message));
-					this.msgSentThirst = true;
-				}
 
 				this.thirstTimer = 0;
 			}
