@@ -1,14 +1,14 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
+  "modid": "alpha",
+  "name": "Survival",
+  "description": "Adds survival elements such as thirst and sleep meters.",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
+  "authorList": ["Hopelessly", "CmKiller"],
+  "credits": "",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []

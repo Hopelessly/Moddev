@@ -1,5 +1,9 @@
 package com.survival;
 
+/**
+ * @author Hopelessly
+ */
+
 import com.survival.capabilities.Sleep.ISleep;
 import com.survival.capabilities.Sleep.SleepProvider;
 import com.survival.capabilities.Thirst.IThirst;
@@ -49,7 +53,6 @@ public class EventHandler {
 			return;
 
 		EntityPlayer player = (EntityPlayer) entity;
-
 		ISleep sleep = player.getCapability(SleepProvider.SLEEP_CAP, null);
 		IThirst thirst = player.getCapability(ThirstProvider.THIRST_CAP, null);
 		EnumDifficulty enumdifficulty = player.worldObj.getDifficulty();
@@ -90,7 +93,6 @@ public class EventHandler {
 			}
 			if (this.thirstTimer >= 80) {
 				if (player.getHealth() > 1.0F) {
-
 					player.attackEntityFrom(DamageSource.starve, 1.0F);
 				}
 				this.thirstTimer = 0;
