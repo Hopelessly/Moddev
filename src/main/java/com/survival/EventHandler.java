@@ -38,6 +38,7 @@ public class EventHandler {
 	private int thirstTimer;
 	private int sleepTimer;
 	private int day;
+	private boolean msgSent = false;
 
 	@SubscribeEvent
 	public void onLivingUpdateEvent(LivingUpdateEvent event) {
@@ -70,8 +71,11 @@ public class EventHandler {
 					sleep.set(0F);
 				if (sleep.getSleep() <= 0F) {
 					sleep.set(0F);
-					String message = String.format("You are exhausted. Get to a bed and go to sleep fast!");
-					player.addChatMessage(new TextComponentString(message));
+					if (this.msgSent == false) {
+						String message = String.format("You are exhausted. Get to a bed and go to sleep fast!");
+						player.addChatMessage(new TextComponentString(message));
+						this.msgSent = true;
+					}
 				}
 				this.sleepTimer = 0;
 			}
@@ -131,6 +135,7 @@ public class EventHandler {
 
 			sleep.set(Survival.SLEEP_MAX);
 			this.day = 0;
+			this.msgSent = false;
 
 			if (thirst.getThirst() < 400F)
 				thirst.consume(400F);
