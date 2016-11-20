@@ -38,7 +38,9 @@ public class EventHandler {
 	private int thirstTimer;
 	private int sleepTimer;
 	private int day;
-	private boolean msgSent = false;
+	private boolean msgSentSleep = false;
+	private boolean msgSentThirst = false;
+	private int statDecayTimer;
 
 	@SubscribeEvent
 	public void onLivingUpdateEvent(LivingUpdateEvent event) {
@@ -51,7 +53,7 @@ public class EventHandler {
 		ISleep sleep = player.getCapability(SleepProvider.SLEEP_CAP, null);
 		IThirst thirst = player.getCapability(ThirstProvider.THIRST_CAP, null);
 		EnumDifficulty enumdifficulty = player.worldObj.getDifficulty();
-		
+
 		if (enumdifficulty == EnumDifficulty.NORMAL) {
 			++this.sleepTimer;
 			if (this.sleepTimer >= 24000) {
@@ -67,16 +69,15 @@ public class EventHandler {
 			if (this.sleepTimer >= 100) {
 				if(sleep.getSleep() >= 5.5F)
 					sleep.consume(5.5F);
-				else 
+				else if (sleep.getSleep() < 5.5F)
 					sleep.set(0F);
-				if (sleep.getSleep() <= 0F) {
-					sleep.set(0F);
-					if (this.msgSent == false) {
-						String message = String.format("You are exhausted. Get to a bed and go to sleep fast!");
-						player.addChatMessage(new TextComponentString(message));
-						this.msgSent = true;
-					}
+
+				if (this.msgSentSleep == false && sleep.getSleep() <= 0F) {
+					String message = String.format("You are exhausted. Get to a bed and go to sleep fast!");
+					player.addChatMessage(new TextComponentString(message));
+					this.msgSentSleep = true;
 				}
+
 				this.sleepTimer = 0;
 			}
 		}
@@ -84,8 +85,25 @@ public class EventHandler {
 			++this.thirstTimer;
 			if (this.thirstTimer >= 80) {
 				if (player.getHealth() > 1.0F) {
+
 					player.attackEntityFrom(DamageSource.starve, 1.0F);
 				}
+				this.thirstTimer = 0;
+			}
+		} else if (thirst.getThirst() > 0F) {
+			++this.thirstTimer;
+			if (this.thirstTimer >= 100) {
+				if (thirst.getThirst() >= 10F) 
+					thirst.consume(10F);
+				else if (thirst.getThirst() < 10F)
+					thirst.set(0F);
+
+				if (this.msgSentThirst == false && thirst.getThirst() <= 0F) {
+					String message = String.format("You are dehydrated. Get something to drink!");
+					player.addChatMessage(new TextComponentString(message));
+					this.msgSentThirst = true;
+				}
+
 				this.thirstTimer = 0;
 			}
 		}
@@ -135,7 +153,7 @@ public class EventHandler {
 
 			sleep.set(Survival.SLEEP_MAX);
 			this.day = 0;
-			this.msgSent = false;
+			this.msgSentSleep = false;
 
 			if (thirst.getThirst() < 400F)
 				thirst.consume(400F);

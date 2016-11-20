@@ -1,9 +1,11 @@
 package com.survival.capabilities.Thirst;
 
+import com.survival.Survival;
+
 public class Thirst implements IThirst 
 {
 	
-	private float thirst = 250.0F;
+	private float thirst = Survival.THIRST_MAX;
 
 	@Override
 	public void consume(float points) 
