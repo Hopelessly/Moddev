@@ -60,18 +60,19 @@ public class EventHandler {
 				if (day >= 3)
 					day = 3;
 				this.sleepTimer = 0;
-			}
-			
+			}		
 		} else if (enumdifficulty == EnumDifficulty.HARD) {
-			//18,000 ticks for empty sleep
-			//1,000 total sleep
-			//every 1000 ticks lose 56 sleep
 			++this.sleepTimer;
 			if (this.sleepTimer >= 100) {
 				if(sleep.getSleep() >= 5.5F)
 					sleep.consume(5.5F);
 				else 
 					sleep.set(0F);
+				if (sleep.getSleep() <= 0F) {
+					sleep.set(0F);
+					String message = String.format("You are exhausted. Get to a bed and go to sleep fast!");
+					player.addChatMessage(new TextComponentString(message));
+				}
 				this.sleepTimer = 0;
 			}
 		}
@@ -144,30 +145,4 @@ public class EventHandler {
 			player.addChatMessage(new TextComponentString(message));
 		}
 	}
-
-	// @SubscribeEvent
-	// public void onPlayerFalls(LivingFallEvent event)
-	// {
-	// Entity entity = event.getEntity();
-	//
-	// if (entity.worldObj.isRemote || !(entity instanceof EntityPlayerMP) ||
-	// event.getDistance() < 3) return;
-	//
-	// EntityPlayer player = (EntityPlayer) entity;
-	// IThirst thirst = player.getCapability(ThirstProvider.Thirst_CAP, null);
-	//
-	// float points = thirst.getThirst();
-	// float cost = event.getDistance() * 2;
-	//
-	// if (points > cost)
-	// {
-	// thirst.consume(cost);
-	//
-	// String message = String.format("You absorbed fall damage. It costed , you
-	// have left.", (int) cost, (int) thirst.Thirst());
-	// player.addChatMessage(new TextComponentString(message));
-	//
-	// event.setCanceled(true);
-	// }
-	// }
 }
