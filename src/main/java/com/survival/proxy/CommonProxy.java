@@ -13,18 +13,19 @@ import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 
-public class CommonProxy {
-	
+public class CommonProxy
+{
+
 	public void init()
-    {
-        CapabilityManager.INSTANCE.register(IThirst.class, new ThirstStorage(), Thirst.class);
-        CapabilityManager.INSTANCE.register(ISleep.class, new SleepStorage(), Sleep.class);
+	{
+		CapabilityManager.INSTANCE.register(IThirst.class, new ThirstStorage(), Thirst.class);
+		CapabilityManager.INSTANCE.register(ISleep.class, new SleepStorage(), Sleep.class);
 
-        MinecraftForge.EVENT_BUS.register(new CapabilityHandler());
-        MinecraftForge.EVENT_BUS.register(new EventHandler());
-    }
+		MinecraftForge.EVENT_BUS.register(new CapabilityHandler());
+		MinecraftForge.EVENT_BUS.register(new EventHandler());
+	}
 
-	public void registerItemRenderer(Item item, int meta, String id) 
+	public void registerItemRenderer(Item item, int meta, String id)
 	{
 	}
 }
