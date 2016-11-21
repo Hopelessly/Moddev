@@ -27,6 +27,14 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 
 public class EventHandler {
+	
+	private int statDecayTimer;
+	private int thirstTimer;
+	private int sleepTimer;
+	private int day;
+	
+	private boolean msgSentSleep = false;
+	private boolean msgSentThirst = false;
 
 	@SubscribeEvent
 	public void onPlayerLogsIn(PlayerLoggedInEvent event) {
@@ -38,13 +46,6 @@ public class EventHandler {
 				+ (int) sleep.getSleep() + " sleep left.";
 		player.addChatMessage(new TextComponentString(message));
 	}
-
-	private int thirstTimer;
-	private int sleepTimer;
-	private int day;
-	private boolean msgSentSleep = false;
-	private boolean msgSentThirst = false;
-	private int statDecayTimer;
 
 	@SubscribeEvent
 	public void onLivingUpdateEvent(LivingUpdateEvent event) {
